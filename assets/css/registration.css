@@ -4,9 +4,13 @@
     --input--background-color:#D9D9D9;
     --link-color:#0172B2;
 }
+* {
+  box-sizing: border-box;
+}
 body{
-    margin:o;
+    margin:0;
     padding:0;
+    overflow-x: hidden;
 }
 
 .header{
@@ -24,102 +28,51 @@ form h4{
     color: var(--primary-color);
     text-align: center;
     font-size: 2.5vw;
+    
+}
+.form-container{
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.form-container .input-wrapper, .select-wrapper{
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
 }
 
-.form_container{
-    display: grid;
-    grid-template-columns: 30% 45% 25%;
-}
-form input, select{
+.form-container .input-wrapper input,.form-container .input-wrapper span, .select-wrapper select{
     border-radius: 50px;
     background-color: var(--input--background-color);
-    color: var(--white-color);
+    padding: 1%;
+    
 }
-form .pers_infos input,form .pers_infos select {
-    display:block;
-    margin-bottom: 10px; 
-    padding-top: 2%;
-    padding-bottom:2% ;
-    padding-right:15% ;
-    padding-left: 15%;
+.form-container .input-wrapper span svg,.form-container .input-wrapper span label, .form-container {
+    color: var(--primary-color);
 }
-.input-wrapper {
-  display: flex;
-  align-items: center;
-}
-.input-wrapper input {
-  border:none;
-  outline: none; /* Removes the inner border on click */
-  flex: 1;
-}
-.input-wrapper svg {
-  color: var(--primary-color);
-  transform: translate(32px,-5px);
-}
-.input-wrapper label {
-  color: var(--primary-color);
-  transform: translate(35px,-5px);
-  font-size:0.8em;
-}
-.select-wrapper{
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  transform: translateX(30px);
-}
-
-.accept_condition{
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    justify-content: center;
-}
-
-.submit_registration{
-    margin-top: 20px;
-    text-align: center;
-   
-}
-
-.submit_registration input{
-    padding-top: 2%;
-    padding-bottom:2% ;
-    padding-right: 10%;
-    padding-left: 10%;
+.register{
     background-color: var(--primary-color);
     color: var(--white-color);
+    border-radius: 50px;
+    padding-top:1%;
+    padding-bottom:1% ;
+    padding-left: 6%;
+    padding-right: 6%;
+    margin-left: 20px;
 }
 
-a{
-    color: var(--link-color);
-}
-
-
-/* Design for Mobile */
-
-@Media screen and (max-width:612px){
-    .form_container{
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-
-    }
+@media screen and (max-width:612px) {
     .header h3{
-    font-size: 3vw;
-    }
+    font-size: 3.5vw;
+}
 
-    form h4{
-        font-size: 3.5vw;
-    }
-
-  
-   .accept_condition{
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    justify-content: center;
-    font-size: 0.8em;
-    }
-    .accept_condition input {
-        margin-right: 5px;
-    }
+form h4{
+    font-size: 4vw;   
+}
+   .form-container .input-wrapper input,.form-container .input-wrapper span, .select-wrapper select{
+    
+    padding: 2%;
+    
+} 
 }

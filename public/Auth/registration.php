@@ -1,3 +1,13 @@
+<?php 
+
+require_once __DIR__ . '/../../vendor/autoload.php'; // Load all libraries;
+require_once __DIR__ . '/../../includes/dbconnexion.php'; // Load DB;
+
+    
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,82 +30,90 @@
     <!-- Registration formular -->
      
     <form action="">
-        <h4>Create Free Account</h4><br><br>
-        <div class="form_container">
-            <div> </div>
-            <div>
-                <div class="pers_infos">
-                    <div class="input-wrapper">
-                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d='M12 12.75c3.942 0 7.987 2.563 8.249 7.712a.75.75 0 0 1-.71.787c-2.08.106-11.713.171-15.077 0a.75.75 0 0 1-.711-.787C4.013 15.314 8.058 12.75 12 12.75m0-9a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5'/></svg>
-                        <input type="text" placeholder="First Name" id="first_name" name="first_name" value="">
-                    </div>
-
-                    <div class="input-wrapper">
-                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d='M12 12.75c3.942 0 7.987 2.563 8.249 7.712a.75.75 0 0 1-.71.787c-2.08.106-11.713.171-15.077 0a.75.75 0 0 1-.711-.787C4.013 15.314 8.058 12.75 12 12.75m0-9a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5'/></svg>
-                        <input type="text" placeholder="Last Name" id="last_name" name="last_name" value="">
-                    </div>
-
-                    <div class="input-wrapper">
-                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d='m2.357 7.714 6.98 4.654c.963.641 1.444.962 1.964 1.087.46.11.939.11 1.398 0 .52-.125 1.001-.446 1.964-1.087l6.98-4.654M7.157 19.5h9.686c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.31-1.311c.328-.642.328-1.482.328-3.162V9.3c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311c-.642-.327-1.482-.327-3.162-.327H7.157c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.31 1.311c-.328.642-.328 1.482-.328 3.162v5.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311c.642.327 1.482.327 3.162.327'/></svg>
-                        <input type="email" placeholder="Email" id="email" name="email" value="">
-                    </div>
-                    <div class="input-wrapper">
-                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d='M12.597 21.8a.995.995 0 0 1-1.194 0C6.253 17.976.785 10.109 6.31 4.425A7.93 7.93 0 0 1 12 2c2.134 0 4.18.872 5.689 2.424 5.526 5.684.059 13.55-5.092 17.377'/><path d='M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4'/></svg>
-                        <input type="text" placeholder="Address" id="address" name="address" value="">
-                    </div>
-                    <div class="input-wrapper">
-                        <label for="phone_number">+250</label>
-                        <input type="text" placeholder="Phone Number" id="phone_number" name="phone_number" >
-                    </div>
-
-                    <div class="input-wrapper">
-                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d='M8 10V8c0-2.761 1.239-5 4-5s4 2.239 4 5v2M3.5 17.8v-4.6c0-1.12 0-1.68.218-2.107a2 2 0 0 1 .874-.875c.428-.217.988-.217 2.108-.217h10.6c1.12 0 1.68 0 2.108.217a2 2 0 0 1 .874.874c.218.428.218.988.218 2.108v4.6c0 1.12 0 1.68-.218 2.108a2 2 0 0 1-.874.874C18.98 21 18.42 21 17.3 21H6.7c-1.12 0-1.68 0-2.108-.218a2 2 0 0 1-.874-.874C3.5 19.481 3.5 18.921 3.5 17.8m8.5-2.05v-.5m4 .5v-.5m-8 .5v-.5'/></svg>
-                        <input type="password" id="password" name="password" value="" placeholder="Password">
-                    </div>
-                    <div class="input-wrapper">
-                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d='M8 10V8c0-2.761 1.239-5 4-5s4 2.239 4 5v2M3.5 17.8v-4.6c0-1.12 0-1.68.218-2.107a2 2 0 0 1 .874-.875c.428-.217.988-.217 2.108-.217h10.6c1.12 0 1.68 0 2.108.217a2 2 0 0 1 .874.874c.218.428.218.988.218 2.108v4.6c0 1.12 0 1.68-.218 2.108a2 2 0 0 1-.874.874C18.98 21 18.42 21 17.3 21H6.7c-1.12 0-1.68 0-2.108-.218a2 2 0 0 1-.874-.874C3.5 19.481 3.5 18.921 3.5 17.8m8.5-2.05v-.5m4 .5v-.5m-8 .5v-.5'/></svg>
-                        <input type="password" id="password_confirm" name="password_confirm" value="" placeholder="Confirm Password">
-                    </div> 
-
-                    <div class="input-wrapper">
-                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d='M12.597 21.8a.995.995 0 0 1-1.194 0C6.253 17.976.785 10.109 6.31 4.425A7.93 7.93 0 0 1 12 2c2.134 0 4.18.872 5.689 2.424 5.526 5.684.059 13.55-5.092 17.377'/><path d='M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4'/></svg>
-                        <select name="nationality" id="nationality">
-                            <option value="">Select Nationality</option>
-                        </select>
-                    </div>
-
-                    <div class="select-wrapper">
-                    <select name="gender" id="gender">
-                        <option value="">Select Gender</option>
-                        <option value="M">Male</option>
-                        <option value="F">Female</option>
-                    </select>
-                    </div>
-
-                    <div class="select-wrapper">
-                        <label for="cust_profile">Choose a profile picture</label>
-                        <input type="file" id="cust_profile" name="cust_profile" accept="image/*" placeholder="Choose a file" >
-                    </div>
-
-                </div>
-                <div class="accept_condition " >
-                        <input  type="checkbox" id="accept_terms" name="accept_terms"> 
-                        <label  for="accept_terms">Accept our <a href="">terms</a> and <a href="">conditions</a> to use our services</label>
-                </div>
-                <div class="submit_registration">
-                    <input type="submit" value="CREATE ACCOUNT" name="register" id="register"> <br>
-                    <p>Already have an account? <a href="./login.php">Login here</a> </p>
-
+        <h4>Create Free Account</h4>
+        <div class="form-container">
+            <!-- First name     -->
+            <div class="input-group input-wrapper">
+                <span class="input-group-text" id="first_name"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d='M12 12.75c3.942 0 7.987 2.563 8.249 7.712a.75.75 0 0 1-.71.787c-2.08.106-11.713.171-15.077 0a.75.75 0 0 1-.711-.787C4.013 15.314 8.058 12.75 12 12.75m0-9a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5'/></svg></span>
+                <input type="text" id="first_name" name="first_name" class="form-control" placeholder="First Name" aria-label="first_name" aria-describedby="first_name">
+                
+            </div>
+            <!-- Last name -->
+            <div class="input-group input-wrapper">
+                <span class="input-group-text" id="last_name"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d='M12 12.75c3.942 0 7.987 2.563 8.249 7.712a.75.75 0 0 1-.71.787c-2.08.106-11.713.171-15.077 0a.75.75 0 0 1-.711-.787C4.013 15.314 8.058 12.75 12 12.75m0-9a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5'/></svg></span>
+                <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Last Name" aria-label="last_name" aria-describedby="last_name">
+                
+            </div>
+            <!-- Email -->
+            <div class="input-group input-wrapper">
+                <span class="input-group-text" id="email"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d='M7.125 3.75h9.75c.813 0 1.468 0 2 .043.546.045 1.026.14 1.47.366a3.75 3.75 0 0 1 1.64 1.639c.226.444.32.924.365 1.47q.01.12.016.247a.75.75 0 0 1 .014.336c.013.41.013.879.013 1.417v5.464c0 .813 0 1.469-.043 2-.045.546-.14 1.026-.366 1.47a3.75 3.75 0 0 1-1.639 1.64c-.444.226-.924.32-1.47.365-.532.043-1.187.043-2 .043h-9.75c-.813 0-1.468 0-2-.043-.546-.045-1.026-.14-1.47-.366a3.75 3.75 0 0 1-1.639-1.639c-.226-.444-.32-.924-.365-1.47-.044-.531-.044-1.187-.044-2V9.268c0-.538 0-1.007.013-1.417a.75.75 0 0 1 .014-.336q.007-.128.017-.246c.044-.547.139-1.027.365-1.471a3.75 3.75 0 0 1 1.639-1.64c.444-.226.924-.32 1.47-.365.532-.043 1.187-.043 2-.043M20.85 7.341c-.038-.423-.105-.672-.202-.862a2.25 2.25 0 0 0-.983-.984c-.198-.1-.459-.17-.913-.207-.462-.037-1.057-.038-1.909-.038H7.157c-.852 0-1.446 0-1.91.038-.453.037-.714.107-.911.207a2.25 2.25 0 0 0-.984.984c-.096.19-.164.439-.202.862l6.604 4.403c1.01.674 1.363.895 1.722.981a2.25 2.25 0 0 0 1.048 0c.36-.086.711-.307 1.723-.981z'/></svg></span>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email" aria-label="email" aria-describedby="email">
+                
+            </div>
+            <!-- Address -->
+            <div class="input-group input-wrapper">
+                <span class="input-group-text" id="adress"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d='M12 8.75a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5'/><path d='M18.227 3.9A8.68 8.68 0 0 0 12 1.25c-2.34 0-4.579.956-6.227 2.65-3.03 3.117-3.012 6.85-1.612 10.199 1.386 3.312 4.143 6.335 6.794 8.304a1.75 1.75 0 0 0 2.09 0c2.65-1.969 5.408-4.992 6.794-8.304 1.4-3.348 1.418-7.082-1.612-10.199M12 12.75a2.75 2.75 0 1 1 0-5.5 2.75 2.75 0 0 1 0 5.5'/></svg></span>
+                <input type="text" id="adress" name="adress" class="form-control" placeholder="Adress" aria-label="adress" aria-describedby="adress">    
+            </div>
+            <!-- Phone number -->
+            <div class="input-group input-wrapper">
+                <span class="input-group-text" id="phone_number"><label for="phone_number">+250</label></span>
+                <input type="text" id="phone_number" name="phone_number" class="form-control" placeholder="Phone Number" aria-label="phone_number" aria-describedby="phone_number">
+            </div>
+            <!-- password -->
+            <div class="input-group input-wrapper">
+                <span class="input-group-text" id="password"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d='M16.75 8c0-1.478-.33-2.901-1.107-3.975-.8-1.107-2.03-1.775-3.643-1.775s-2.842.668-3.643 1.775C7.58 5.099 7.25 6.522 7.25 8v1.25h-.58c-.535 0-.98 0-1.345.03-.38.031-.736.098-1.073.27a2.75 2.75 0 0 0-1.202 1.202c-.172.337-.24.694-.27 1.074-.03.364-.03.81-.03 1.344v4.66c0 .535 0 .98.03 1.345.03.38.098.737.27 1.074a2.75 2.75 0 0 0 1.202 1.202c.337.172.693.239 1.073.27.365.03.81.03 1.345.03h10.66c.535 0 .98 0 1.345-.03.38-.031.736-.098 1.073-.27a2.75 2.75 0 0 0 1.202-1.202c.172-.337.24-.694.27-1.074.03-.364.03-.81.03-1.344V13.17c0-.534 0-.98-.03-1.344-.03-.38-.098-.737-.27-1.074a2.75 2.75 0 0 0-1.2-1.202c-.338-.172-.694-.239-1.074-.27-.365-.03-.81-.03-1.345-.03h-.58zm-8 0c0-1.283.29-2.36.822-3.096.51-.703 1.28-1.154 2.428-1.154s1.919.45 2.428 1.154c.532.736.822 1.813.822 3.096v1.25h-6.5zm4 7.25v.5a.75.75 0 0 1-1.5 0v-.5a.75.75 0 0 1 1.5 0M16 14.5a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-1.5 0v-.5a.75.75 0 0 1 .75-.75m-7.25.75v.5a.75.75 0 0 1-1.5 0v-.5a.75.75 0 0 1 1.5 0'/></svg></span>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" aria-label="password" aria-describedby="password">    
+            </div>
+            <!-- password confirmation -->
+            <div class="input-group input-wrapper">
+                <span class="input-group-text" id="confirm_password"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d='M16.75 8c0-1.478-.33-2.901-1.107-3.975-.8-1.107-2.03-1.775-3.643-1.775s-2.842.668-3.643 1.775C7.58 5.099 7.25 6.522 7.25 8v1.25h-.58c-.535 0-.98 0-1.345.03-.38.031-.736.098-1.073.27a2.75 2.75 0 0 0-1.202 1.202c-.172.337-.24.694-.27 1.074-.03.364-.03.81-.03 1.344v4.66c0 .535 0 .98.03 1.345.03.38.098.737.27 1.074a2.75 2.75 0 0 0 1.202 1.202c.337.172.693.239 1.073.27.365.03.81.03 1.345.03h10.66c.535 0 .98 0 1.345-.03.38-.031.736-.098 1.073-.27a2.75 2.75 0 0 0 1.202-1.202c.172-.337.24-.694.27-1.074.03-.364.03-.81.03-1.344V13.17c0-.534 0-.98-.03-1.344-.03-.38-.098-.737-.27-1.074a2.75 2.75 0 0 0-1.2-1.202c-.338-.172-.694-.239-1.074-.27-.365-.03-.81-.03-1.345-.03h-.58zm-8 0c0-1.283.29-2.36.822-3.096.51-.703 1.28-1.154 2.428-1.154s1.919.45 2.428 1.154c.532.736.822 1.813.822 3.096v1.25h-6.5zm4 7.25v.5a.75.75 0 0 1-1.5 0v-.5a.75.75 0 0 1 1.5 0M16 14.5a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-1.5 0v-.5a.75.75 0 0 1 .75-.75m-7.25.75v.5a.75.75 0 0 1-1.5 0v-.5a.75.75 0 0 1 1.5 0'/></svg></span>
+                <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirm the Password" aria-label="confirm_password" aria-describedby="confirm_password">    
             </div>
 
+            <!-- Gender -->
+            <div class="form-floating select-wrapper">
+            <select class="form-select" id="gender" aria-label="Floating label select example">
+                <option value="">Choose option</option>
+                <option value="F">Female</option>
+                <option value="M">Male</option>
+            </select>
+            <label for="nationality">Select your gender</label>
+            </div>    
+            <!-- Nationality -->
+            <div class="form-floating select-wrapper">
+            <select class="form-select" id="nationality" aria-label="Floating label select example">
+                <option value="">Choose option</option>
+                
+            </select>
+            <label for="nationality">Select your country of origin</label>
+            </div>    
+             <!-- profile picture -->
+            <div class="mb-3 input-wrapper">
+                <label for="profile" class="form-label">Upload a profile picture</label>
+                <input class="form-control" type="file" id="profile" accept="image/*">
             </div>
-            <div></div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="accept_terms" name="accept_terms">
+                <label class="form-check-label" for="accept_terms">
+                    Accept our <a href="">terms</a> and <a href="">conditions</a> to use our services.                  
+                </label>
+            </div> <br><br>
+            <!-- submit button -->
+             <div style="text-align:center">
+                <input type="submit" value="CREATE ACCOUNT" class="register" id="register" name="register">
+                <p>Already have an account? <a href="">Login here</a></p>
+             </div>
+            
+
         </div>
+           
+        
     </form>
 
 
-
-    
+ 
 <script src="../../assets/js/nationality.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
