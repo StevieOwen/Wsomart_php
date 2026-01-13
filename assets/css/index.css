@@ -1,0 +1,36 @@
+:root{
+    --primary-color: #013F62;
+    --white-color:#fff;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    max-width:100%;
+    align-items:center;
+    
+}
+
+header h3{
+    color:var(--primary-color);
+    margin-left:20px;
+    font-family: Lobster;
+}
+header svg{
+    vertical-align: middle;
+}
+
+header p{
+    margin-right:30px;
+    border: 1px solid var(--primary-color);
+    border-radius: 50px;
+    padding-bottom: 6px;
+    padding-top: 6px;
+    padding-left: 25px;
+    padding-right: 25px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+header a{
+    text-decoration: none;
+    color: var(--white-color);
+}
