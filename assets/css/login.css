@@ -34,6 +34,7 @@ h3{
 .input-wrapper input, .input-wrapper span{
     background-color: var(--input--background-color);
     border-radius: 50px;
+    color:var(--input-text);
 }
 .submitbut{
     width: 40%;

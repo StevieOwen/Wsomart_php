@@ -10,7 +10,7 @@ function send_mail($subject,$body,$recipient){
 try {
     // --- Server Settings ---
     $mail->isSMTP();                                            // Send using SMTP
-    $mail->Host       =  $_ENV['EMAIL_HOST'];                       // Set the SMTP server
+    $mail->Host       = $_ENV['EMAIL_HOST'];                       // Set the SMTP server
     $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
     $mail->Username   = $_ENV['EMAIL_USER'];                 // email
     $mail->Password   = $_ENV['EMAIL_PASSWORD'];                    // App Password (not your login password)

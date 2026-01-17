@@ -33,6 +33,7 @@ p{
     color: var(--white-color);
     border-radius: 50px;
     font-size: 1rem;
+    color:var(--input-text);
 }
 .form-container div{
     margin-bottom: 20px;

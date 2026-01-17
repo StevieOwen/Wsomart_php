@@ -75,7 +75,19 @@ if(isset($_POST['login'])){
                 ]
             );
             //send email with token to customer 
-
+            require_once "../../includes/email.php";
+            $body=file_get_contents ("../../includes/email_template.html");
+            $subject="Email Verification";
+            $data = [
+                        'message'     => 'We are excited to have you! Please use the verification code below to activate your account:',
+                        'token' => $customer["cust_token"],
+                        
+                    ];
+            foreach ($data as $key => $value) {
+                $body = str_replace('{{' . $key . '}}', $value, $body);
+            }        
+            send_mail($subject,$body,$recipient);
+            $_SESSION['customer']=$email;
             header("Location: ./token_validation.php");
         }
 

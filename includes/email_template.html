@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <title>WSOMART</title>
     <style>
                 * {
@@ -19,11 +23,26 @@
             margin-top: 50px;
         }
         .header h3{
-            color: var(--primary-color);
+            color: #013F62;
             font-family: Lobster;
             font-size: 3vw;
         }
+        .mail_content{
+            text-align: center;
+        }
 
+        .token{
+            text-align: center;
+            border: 2px solid #013F62;
+            width: 60%;
+            max-width: 150px;
+           margin-left: 570px;
+           padding: 10px;
+           margin-bottom: 50px;
+        }
+        footer{
+            text-align: center;
+        }
 
 
     </style>
@@ -31,11 +50,16 @@
 <body>
     <header class="header">
         <p><svg width="40" style="color:#013F62" height="40" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d='M2.787 2.28a.75.75 0 0 1 .932.507l.55 1.863h14.655c1.84 0 3.245 1.717 2.715 3.51l-1.655 5.6c-.352 1.193-1.471 1.99-2.715 1.99H8.113c-1.244 0-2.362-.797-2.715-1.99L2.281 3.212a.75.75 0 0 1 .506-.931M6.25 19.5a2.25 2.25 0 1 1 4.5 0 2.25 2.25 0 0 1-4.5 0m8 0a2.25 2.25 0 1 1 4.5 0 2.25 2.25 0 0 1-4.5 0'/></svg></p>
-        <h3>WSOMART</h3>
-    </header>
+        <h3>WSOMART</h3> 
+    </header> <br>
     <div class="mail_content">
-           <p>Welcome to WSOMART</p> 
+           <p>{{message}}</p> 
 
+           <div class="token">{{token}}</div>
     </div>
+    <footer>
+        <p>If you didn't request this, you can safely ignore this email.</p>
+        <p>Best regards,<br><strong><span style="color:#013F62">Wsomart Team</span></strong></p>
+    </footer>    
 </body>
 </html>

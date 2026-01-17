@@ -3,6 +3,8 @@
     --white-color:#fff;
     --input--background-color:#D9D9D9;
     --link-color:#0172B2;
+    --error:#D93025;
+    --input-text:#212121;
 }
 * {
   box-sizing: border-box;
@@ -12,7 +14,9 @@ body{
     padding:0;
     overflow-x: hidden;
 }
-
+.error{
+    color:var(--error);
+}
 
 /* .header{
 >>>>>>> 0d3d8b1 (added logic in the registration page)
@@ -51,6 +55,7 @@ form h4{
     border-radius: 50px;
     background-color: var(--input--background-color);
     padding: 1%;
+    color:var(--input-text);
     
 }
 .form-container .input-wrapper span svg,.form-container .input-wrapper span label, .form-container {
