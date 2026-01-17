@@ -2,10 +2,14 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php'; 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
 function send_mail($subject,$body,$recipient){
 
-    $mail = new PHPMailer(true);
+    $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+   
 
 try {
     // --- Server Settings ---

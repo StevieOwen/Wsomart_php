@@ -112,7 +112,7 @@ if(isset($_POST['send'])){
 
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="POST">
             <h4>Just one more Step</h4>
-            <p>We sent an email to <?php ?> with a token</p>
+            <p>We sent an email to <?php echo $email; ?> with a token</p>
             <div class="form-container">
                 <div>
                     <input type="text" value="" name="token" id="token" placeholder="Enter the token here"> 

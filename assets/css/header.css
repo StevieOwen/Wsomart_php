@@ -20,13 +20,12 @@ body{
 .header h3{
     color: var(--primary-color);
     font-family: Lobster;
-    font-size: 3vw;
+    font-size: 3.5vw;
 }
 
 @media screen and (max-width: 600px){
     header h3{
-    
-    font-size: 4em;
+    font-size: 4vw;
 }
 
 }

@@ -37,7 +37,8 @@ $errors=[
         "cust_password"=>"",
         "cust_confirm_pwd"=>"",
         "password_match"=>"",
-        "accept_terms"=>""       
+        "accept_terms"=>"" ,
+        "email_failed"=>""      
 ];
 
 if(isset($_POST['register'])){
@@ -179,11 +180,17 @@ if(isset($_POST['register'])){
         foreach ($data as $key => $value) {
             $body = str_replace('{{' . $key . '}}', $value, $body);
         }        
-        send_mail($subject,$body,$recipient);
+        if(send_mail($subject,$body,$customer["cust_email"])){
+            // redirect to token validation
+            $_SESSION['customer']=$customer['cust_email'];
+            header("Location:token_validation.php");
+            exit();
+        }else{
+            // Email failed
+            $errors["email_failed"] = "Registration successful, but we couldn't send the email. Please contact support.";
+        }
 
-        // redirect to token validation
-        $_SESSION['customer']=$customer['cust_email'];
-        header("Location:token_validation.php");
+       
         } catch(PDOException $e) {
         echo  $e->getMessage();
         } 
@@ -298,6 +305,7 @@ if(isset($_POST['register'])){
              <div style="text-align:center">
                 <input type="submit" value="CREATE ACCOUNT" class="register" id="register" name="register">
                 <p>Already have an account? <a href="./login.php">Login here</a></p>
+                <div class="error"><?php echo $errors["email_failed"] ?> </div>
              </div>
             
 
