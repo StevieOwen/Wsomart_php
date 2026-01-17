@@ -1,0 +1,54 @@
+:root{
+    --primary-color: #013F62;
+    --white-color:#fff;
+    --input--background-color:#D9D9D9;
+    --link-color:#0172B2;
+    --header-font-family: Lobster;
+}
+* {
+  box-sizing: border-box;
+}
+body{
+    margin:0;
+    padding:0;
+    overflow-x: hidden;
+}
+
+h3{
+    font-family: var(--header-font-family);
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.form-container{
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.input-wrapper{
+    width: 100%;
+    
+}
+.input-wrapper input, .input-wrapper span{
+    background-color: var(--input--background-color);
+    border-radius: 50px;
+}
+.submitbut{
+    width: 40%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.submitbut input{
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border-radius: 50px;
+}
+
+p{
+    text-align: center;
+}

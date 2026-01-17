@@ -10,7 +10,9 @@ $pass = $_ENV['DB_PASSWORD'];
 $port=$_ENV['DB_PORT'];
 
 try {
-  $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+
+  $conn = new PDO("mysql:host=$host;port=$port;dbname=$db", $user, $pass);
+
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 } catch(PDOException $e) {

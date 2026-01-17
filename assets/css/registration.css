@@ -13,7 +13,9 @@ body{
     overflow-x: hidden;
 }
 
-.header{
+
+/* .header{
+>>>>>>> 0d3d8b1 (added logic in the registration page)
     text-align: center;
     margin-top: 50px;
 }
@@ -21,7 +23,10 @@ body{
     color: var(--primary-color);
     font-family: Lobster;
     font-size: 2vw;
+
 }
+} */
+
 
 form h4{
     font-family: Lobster;

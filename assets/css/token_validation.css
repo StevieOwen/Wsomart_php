@@ -1,0 +1,76 @@
+:root{
+    --primary-color: #013F62;
+    --white-color:#fff;
+    --input--background-color:#D9D9D9;
+    --link-color:#0172B2;
+}
+* {
+  box-sizing: border-box;
+}
+body{
+    margin:0;
+    padding:0;
+    overflow-x: hidden;
+}
+
+h4{
+    text-align: center;
+    font-size: 2vw;
+}
+p{
+    text-align: center;
+}
+.form-container{
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-container input[type="text"]{
+    width: 100%;
+    background-color: var(--input--background-color);
+    color: var(--white-color);
+    border-radius: 50px;
+    font-size: 1rem;
+}
+.form-container div{
+    margin-bottom: 20px;
+}
+
+.submitbut{
+    width: 40%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.submitbut input[type="submit"]{
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border-radius: 50px;
+}
+
+.error{
+    color: red;
+}
+
+.resetbut {
+    width: 40%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+.resetbut input{
+    width: 100%;
+    border: none;
+    background-color: var(--white-color);
+    text-decoration: underline;
+    font-size: 1rem;
+}
+
+@media screen and (max-width: 600px){
+    .resetbut input{
+   
+    font-size: 0.8rem;
+}
+}
