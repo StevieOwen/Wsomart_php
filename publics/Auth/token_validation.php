@@ -35,8 +35,29 @@ if(isset($_POST['send'])){
         $currentTime = new DateTime();
         $formattedCurrentTime = $currentTime->format('Y-m-d H:i:s');
 
-       //reset token
-        if(isset($_POST['reset'])){
+     // comparing the token in DB to the token enterd by the user
+        if($token!=$token_db){
+            $errors["nomatch"]="The token entered is not correct.<br> Please enter the token sent to your email";
+        }else if(($token==$token_db && $formattedCurrentTime>$expires_at) || ($token_used=="yes")){
+            $errors['expired']="The token expired or has been used.";
+
+        } else if($token==$token_db && $formattedCurrentTime<$expires_at && $token_used=="no" ){
+        $stmt=$conn->prepare("update customer set token_used=:value, email_verified=:email_verified, cust_status=:cust_status where cust_email=:cust_email");
+        $stmt->bindParam(":value",$value);
+        $stmt->bindParam(":email_verified",$email_verified);
+        $stmt->bindParam(":cust_status",$cust_status);
+        $cust_status="active";
+        $email_verified="yes";
+        $value="yes";
+        $stmt->bindParam(":cust_email",$email);  
+        $stmt->execute();
+        header("Location:./login.php");
+        }
+    }
+}
+
+//reset token
+if(isset($_POST['reset'])){
              //generating new token
 
             $generated_token= generate_token();
@@ -63,33 +84,25 @@ if(isset($_POST['send'])){
             $subject="Email Verification";
             $data = [
                         'message'     => 'We are excited to have you! Please use the verification code below to activate your account:',
-                        'token' => $customer["cust_token"],
+                        'token' => $generated_token[0],
                         
                     ];
             foreach ($data as $key => $value) {
                 $body = str_replace('{{' . $key . '}}', $value, $body);
             }        
-            send_mail($subject,$body,$recipient);
-            $_SESSION['customer']=$email;
-                header("Location: ./token_validation.php");
-        }
 
-     // comparing the token in DB to the token enterd by the user
-        if($token!=$token_db){
-            $errors["nomatch"]="The token entered is not correct.<br> Please enter the token sent to your email";
-        }else if(($token==$token_db && $formattedCurrentTime>$expires_at) || ($token_used=="yes")){
-            $errors['expired']="The token expired or has been used.";
-
-        } else if($token==$token_db && $formattedCurrentTime<$expires_at && $token_used=="no" ){
-        $stmt=$conn->prepare("update customer set token_used=:value where cust_email=:cust_email");
-        $tmt->bindParam(":value",$value);
-        $value="yes";
-        $stmt->bindParam(":cust_email",$email);  
-        $stmt->execute();
-        header("Location:./login.php");
-        }
-    }
+            
+            if(send_mail($subject,$body,$email)){
+                // redirect to token validation
+                $_SESSION['customer']=$email;
+                header("Location:token_validation.php");
+                exit();
+            }else{
+                // Email failed
+                $errors["email_failed"] = "Sorry we couldn't send the email. Please contact support.";
+            }
 }
+
 
 ?>
 
