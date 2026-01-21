@@ -1,0 +1,110 @@
+:root{
+    --primary-color: #013F62;
+    --white-color:#fff;
+    --input--background-color:#D9D9D9;
+    --link-color:#0172B2;
+    --error:#D93025;
+    --input-text:#212121;
+    --font--1:Linden Hill;
+    --input-background--2:#641314;
+    --card-color:#4B8FB6;
+}
+* {
+  box-sizing: border-box;
+}
+
+
+body{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+h4{
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 2vw;
+}
+.form-container{
+    width: 70%;
+    max-width: 40rem;
+    padding: 0.2rem;
+    margin: 0 auto;
+}
+
+.input-wrapper{
+    width: 100%;
+    padding: 0.2rem;
+    margin-bottom: 0.6rem;
+}
+.input-wrapper input,.input-wrapper select{
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 50px;
+    background-color: var(--input--background-color);
+    color: var(--input-text);
+}
+
+.input-wrapper textarea{
+     width: 100%;
+    padding: 0.4rem;
+    /* border-radius: 50px; */
+    background-color: var(--input--background-color);
+    color: var(--input-text);
+}
+
+
+.submitbut{
+    text-align: center;
+    padding: 1.5rem;
+
+}
+
+.submitbut input{
+    text-align: center;
+    border-radius:50px ;
+    padding: 0.8rem;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    
+}
+
+.error{
+    color: var(--error);
+}
+@media screen and (max-width:612px){
+    h4{
+    font-size: 5vw;
+}
+
+.form-container{
+    width: 95%;
+    padding: 1rem;
+    margin: 0 auto;
+}
+
+.input-wrapper{
+    width: 100%;
+    padding: 0.2rem;
+    margin-bottom: 0.6rem;
+}
+.input-wrapper input{
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 50px;
+    background-color: var(--input--background-color);
+    color: var(--input-text);
+    font-size: 3vw;
+}
+.input-wrapper select{
+    width: 100%;
+    padding: 0.4rem;
+    border-radius: 50px;
+    background-color: var(--input--background-color);
+    color: var(--input-text);
+}
+.input-wrapper label{
+    font-size: 3vw;
+}
+
+}

@@ -7,8 +7,26 @@ require_once "../../includes/token_generation.php";
 $cust=["email"=>"","fname"=>"","lname"=>"","address"=>"","phone"=>"",];
 $errors=["fname"=>"","lname"=>"","address"=>"","phone"=>"",];
 
-if(isset($_POST['update'])){
-   
+$cust['email']="hhirwa1390@stu.kemu.ac.ke";
+$dbvalue=["fname","lname","address","phone"];
+try{
+    $stm=$conn->prepare("SELECT cust_first_name, cust_last_name, cust_address, cust_phone from customer where cust_email=:cust_email");
+    $stm->bindParam('cust_email',$cust['email']);
+    $stm->execute();
+    $result=$stm->fetch(PDO::FETCH_ASSOC);
+
+    if(!$cust){
+            $errors["email_not_found"]="Email not found! Please create first an account ";
+        }else{
+            $dbvalue['fname']=$result['cust_first_name'];
+            $dbvalue['lname']=$result['cust_last_name'];
+            $dbvalue['address']=$result['cust_address'];
+            $dbvalue['phone']=$result['cust_phone'];
+        }
+}catch (Exception $e){
+    
+}
+if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])){
     if(empty($_POST['fname'])){
         $errors['fname']="The first name is required";
     }else{
@@ -32,7 +50,7 @@ if(isset($_POST['update'])){
     }else{
         $cust['phone']=checkinput($_POST['phone']);
     }    
-
+   
     $num_err=0;
     foreach($errors as $error){
         if(!empty($error)){
@@ -41,16 +59,35 @@ if(isset($_POST['update'])){
     }
 
     if($num_err==0){
-        $stm=$conn->prepare("UPDATE customer set cust_first_name=:fname, cust_last_name=:lname, cust_phone=:phone, cust_address=:address where cust_email=:cust_email " );
+        try{
+        $stm=$conn->prepare("UPDATE customer set cust_first_name=:fname, cust_last_name=:lname, cust_phone=:phone, cust_address=:cust_address where cust_email=:cust_email " );
         $data=[
-                ':fname',$cust['fname'],
-                ':lname',$cust['lname'],
-                ':phone',$cust['phone'],
-                ':address',$cust['address'],
-                ':cust_email',$email,
+                ':fname'=>$cust['fname'],
+                ':lname'=>$cust['lname'],
+                ':phone'=>$cust['phone'],
+                ':cust_address'=>$cust['address'],
+                ':cust_email'=>$cust['email'],
               ];
-        $stm->execute($data);      
+       if($stm->execute($data)){
+        echo "success";
+        } else {
+            echo "error";
+        }    
+        }catch(Exception $e){
+                echo "error";
+        } exit;
     }
+}
+if(isset($_POST['logout'])){
+    if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
+}
+session_destroy();
+header("Location:../Auth/login.php");
 }
 
 ?>
@@ -80,36 +117,36 @@ if(isset($_POST['update'])){
                 <form id="edit_form" class="hidden" action="<?php  echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST" >
                     <div class="form-container">
                         <!-- first name -->
-                        <div class="error"><?php echo $errors['fname'] ?></div>
+                        <!-- <div class="error"><?php echo $errors['fname'] ?></div> -->
                         <div class="input-group  input-wrapper mb-3">
-                            <input disabled ="text" class="form-control" value="<?php  ?>" name="fname" aria-label="Recipient’s fname" aria-describedby="fname_edit">
+                            <input disabled ="text" class="form-control" value="<?php echo  $dbvalue['fname'] ?>" name="fname" aria-label="Recipient’s fname" aria-describedby="fname_edit">
                             <button class="btn btn-outline-secondary edit_btn" type="button" id="fname_edit">Edit</button>
                         </div>   
                         
                         <!-- last name -->
-                        <div class="error"><?php echo $errors['lname'] ?></div>
+                        <!-- <div class="error"><?php echo $errors['lname'] ?></div> -->
                         <div class="input-group input-wrapper mb-3">
-                            <input disabled type="text" class="form-control" value="<?php  ?>" name="lname" aria-label="Recipient’s lname" aria-describedby="lname_edit">
+                            <input disabled type="text" class="form-control" value="<?php echo  $dbvalue['lname']  ?>" name="lname" aria-label="Recipient’s lname" aria-describedby="lname_edit">
                             <button class="btn btn-outline-secondary edit_btn" type="button" id="lname_edit">Edit</button>
                         </div>   
 
                         <!-- address -->
-                        <div class="error"><?php echo $errors['address'] ?></div>
+                        <!-- <div class="error"><?php echo $errors['address'] ?></div> -->
                         <div class="input-group input-wrapper mb-3">
-                            <input disabled type="text" class="form-control" value="<?php  ?>" name="address" aria-label="Recipient’s address" aria-describedby="address_edit">
+                            <input disabled type="text" class="form-control" value="<?php echo  $dbvalue['address'] ?>" name="address" aria-label="Recipient’s address" aria-describedby="address_edit">
                             <button class="btn btn-outline-secondary edit_btn" type="button" id="address_edit">Edit</button>
                         </div> 
 
                         <!-- phone number -->
-                        <div class="error"><?php echo $errors['phone'] ?></div>
+                        <!-- <div class="error"><?php echo $errors['phone'] ?></div> -->
                         <div class="input-group input-wrapper mb-3">
-                            <input disabled type="text" class="form-control" value="<?php  ?>" name="phone" aria-label="Recipient’s phone" aria-describedby="phone_edit">
+                            <input disabled type="text" class="form-control" value="<?php echo  $dbvalue['phone']  ?>" name="phone" aria-label="Recipient’s phone" aria-describedby="phone_edit">
                             <button class="btn btn-outline-secondary edit_btn" type="button" id="phone_edit">Edit</button>
                         </div> 
 
 
                         <div class="submitbut">
-                            <button type="button"  name="update" id="update" >Update</button>
+                            <button type="submit"  name="update" id="update" >Update</button>
                         </div>
 
 
@@ -142,10 +179,12 @@ if(isset($_POST['update'])){
                 </div>
                 <p>According to your experiences give us some stars</p>
             </div>
-        </div>
-        <div>
+        </div><br>
+        <form action="<?php htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
+        <div class="logoutbut">
             <input type="submit" value="Logout" name="logout" id="logout">
         </div>
+        </form>
     </main>
 
     <script src="../../assets/js/edit_infos.js"></script>

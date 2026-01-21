@@ -75,7 +75,9 @@ input[type="submit"]{
     background-color: var(--primary-color);
     border-radius: 12px;
     margin-bottom: 15px;
+    margin: 0 auto;
 }
+
 .rate h5{
     text-align: center;
     color: var(--input--background-color);
@@ -140,6 +142,11 @@ color: var(--input-text);
 width: 60%;
 max-width: 200px;
 margin: 0 auto;
+}
+.logoutbut{
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
 }
 
 button[name="update"]{

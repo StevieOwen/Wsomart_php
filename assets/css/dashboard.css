@@ -1,0 +1,262 @@
+:root{
+    --primary-color: #013F62;
+    --white-color:#fff;
+    --input--background-color:#D9D9D9;
+    --link-color:#0172B2;
+    --error:#D93025;
+    --input-text:#212121;
+    --font--1:Linden Hill;
+    --input-background--2:#641314;
+    --card-color:#4B8FB6;
+}
+* {
+  box-sizing: border-box;
+}
+body{
+    margin:0;
+    padding:0;
+    overflow-x: hidden;
+}
+
+.card-container{
+    width: 80%;
+    max-width: 30rem;
+    margin: 0 auto;
+    padding: 1vw;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    max-width: 28rem;
+    padding: 1vw;
+}
+.card_design{
+    background-color: var(--card-color);
+    padding-top:8px ;
+    padding-bottom:8px ;
+    padding-left:10px ;
+    padding-right:10px ;
+    border-radius: 12px;
+    color: var(--white-color);
+    padding: 1rem;
+}
+
+.addsection{ 
+    width: 80%;
+    max-width: 30rem;
+    margin: 0 auto; 
+}
+.addcontainer{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin: 1 auto;
+}
+
+.addsection h6{
+    opacity: 0.7;
+    font-size: 0.8rem;
+}
+.addsection h5{
+    background-color: var(--primary-color);
+    text-align: center;
+    align-self: center;
+    border-radius: 50px; 
+    padding: 0.5rem;
+    width: 40%;
+    font-size: 0.7rem;
+}
+
+
+.addsection a{
+    text-decoration: none;
+    color: var(--white-color);
+}
+
+.productlist{
+    width: 50%;
+    margin: 0 auto;
+    /* border: 2px solid blue; */
+    padding: 1rem;
+
+}
+.product-container img{
+    display: block;
+    border: 1px solid white;
+    box-shadow: 0 0 5px 0 var(--primary-color);
+    border-radius:12px ;
+}
+.product-container{
+    display: flex;
+    justify-content:space-between;
+    /* border: 2px solid black; */
+    width: 100%;
+    max-width: 30rem;
+    padding: 0.5rem;
+}
+
+.product-infos{
+    width: 100%;
+    margin-left: 0.6rem;  
+}
+.card-buttons button{
+    font-size: 0.7rem;
+    border-radius: 50px;
+    padding: 0.3rem;
+    color: var(--white-color);
+}
+
+
+
+
+@media screen and (max-width:612px){
+ 
+    .container{
+        width: 100%;
+    }
+
+    .card_design{
+    max-width: 90%;
+    min-width: 48%;
+    }
+    .addsection{
+        width: 80%;
+        max-width: 650px;
+        margin: 0 auto;
+    }
+
+    .addcontainer{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 1 auto;
+    }
+
+    .addsection h5{
+        padding: 0.5rem;
+        width: 40%;
+        font-size: 0.7rem;
+    }
+    .productlist{
+    width: 100%;
+    margin: 0 auto;
+
+    }
+
+}
+
+@media screen and (max-width:412px){
+    .card-container{
+        width: 90%;
+        max-width: 50rem;
+        margin: 0 auto;
+        padding: 1vw;
+    }
+    .container{
+        width: 95%;
+        max-width: 45rem;
+    }
+
+    .card_design{
+    max-width: 90%;
+    min-width: 30%;
+    }
+    .addsection{
+        width: 80%;
+        max-width: 650px;
+        margin: 0 auto;
+        
+    }
+    .addcontainer{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 1 auto;
+    
+    }
+
+
+    .addsection h5{
+        padding: 0.5rem;
+        width: 40%;
+        font-size: 0.7rem;
+    }
+
+    .productlist{
+    width: 100%;
+    margin: 0 auto;
+    }
+
+
+}
+
+@media screen and (max-width:350px){
+ .card-container{
+    width: 100%;
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 1vw;
+  }
+    .container{
+        width: 95%;
+        max-width: 45rem;
+        margin: 0 auto;
+    }
+
+    .card_design{
+    max-width: 90%;
+    min-width: 30%;
+    }
+    .addsection{
+        width: 90%;
+        max-width: 650px;
+        margin: 0 auto;
+        
+    }
+
+    .addcontainer{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 1 auto;
+    
+    }
+
+    .addsection h5{
+        padding: 0.5rem;
+        width: 45%;
+        font-size: 0.7rem;
+    }
+
+    .productlist{
+    width: 100%;
+    margin: 0 auto;
+     
+
+    }
+
+
+}
+
+/* @media screen and (max-width:307px){
+ .card-container{
+    width: 100%;
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 1vw;
+  }
+    .container{
+        width: 100%;
+        max-width: 50rem;
+        margin: 0 auto;
+        
+    }
+
+    .card_design{
+    max-width: 80%;
+    min-width: 25%;
+    }
+
+} */
+

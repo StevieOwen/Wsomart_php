@@ -193,7 +193,7 @@ if(isset($_POST['register'])){
         }
 
         } catch(PDOException $e) {
-        echo  $e->getMessage();
+        // echo  $e->getMessage();
         } 
         $conn = null;   
     }
