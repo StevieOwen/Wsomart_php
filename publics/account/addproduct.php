@@ -2,8 +2,7 @@
 require_once __DIR__ . '/../../vendor/autoload.php'; // Load all libraries;
 require_once __DIR__ . '/../../includes/dbconnexion.php'; // Load DB;
 require_once "../../includes/checkinput.php";
-
-$cust_id="cuts_297635";
+require_once "../../includes/session.php";
 
 $item=['item_id'=>'','item_created_at'=>'','item_status'=>'available', 'item_deadline'=>'' ,'name'=>'','brand'=>'','material'=>'', 'price'=>'', 'quantity'=>1 , 'category'=>'','description'=>'','image'=>'','image_temp'=>''];
 $errors=['name'=>'','price'=>'','category'=>'','image'=>''];
@@ -119,6 +118,7 @@ if(isset($_POST['additem'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/header2.css" >
     <link rel="stylesheet" href="../../assets/css/addproduct.css" >
+    <link rel="stylesheet" href="../../assets/css/footer.css">
 
     <title></title>
 </head>
@@ -193,5 +193,8 @@ if(isset($_POST['additem'])){
 
         </div>
     </form>
+    <?php require_once "../../includes/footer.php" ;
+        render_footer("../home.php", '#', "./dashboard.php", "./settings.php")
+    ?>
 </body>
 </html>

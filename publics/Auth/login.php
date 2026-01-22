@@ -3,12 +3,11 @@ require_once __DIR__ . '/../../vendor/autoload.php'; // Load all libraries;
 require_once __DIR__ . '/../../includes/dbconnexion.php'; // Load DB;
 require_once "../../includes/checkinput.php";
 require_once "../../includes/token_generation.php";
-
+$cust_id='';
 $email="";
 $pwd="";
 $pwd_db="";
 $email_verified="";
-
 $errors=["email"=>"", "pwd"=>"", "email_not_found"=>""];
 
 if(isset($_POST['login'])){
@@ -36,7 +35,7 @@ if(isset($_POST['login'])){
     }
 
     if($num_err==0){
-        $stm=$conn->prepare("SELECT cust_password, email_verified from customer where cust_email=:cust_email");
+        $stm=$conn->prepare("SELECT cust_id, cust_password, email_verified from customer where cust_email=:cust_email");
         $stm->bindParam(":cust_email", $email);
         $stm->execute();
 
@@ -49,13 +48,14 @@ if(isset($_POST['login'])){
         }else{
             $pwd_db=$cust["cust_password"];
             $email_verified=$cust["email_verified"];
+            $cust_id=$cust['cust_id'];
             
 
             if(!password_verify($pwd,$pwd_db)){
                 $errors['pwd']="Incorrect password";
             }else if(password_verify($pwd,$pwd_db) && $email_verified=="yes"){
             //redirect to home page
-                $_SESSION['customer']=$email;
+                $_SESSION['customer']=['cust_email'=>$email,'cust_id'=> $cust_id];
                 header("Location:../home.php");
 
             }else if(password_verify($pwd,$pwd_db) && $email_verified=="no"){

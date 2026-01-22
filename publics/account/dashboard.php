@@ -1,8 +1,9 @@
+
 <?php
 require_once __DIR__ . '/../../vendor/autoload.php'; // Load all libraries;
 require_once __DIR__ . '/../../includes/dbconnexion.php'; // Load DB;
+require_once "../../includes/session.php";
 
-$cust_id="cuts_297635";
 $item=['price'=>'','name'=>'','img_name'=>'','id'=>''];
 $num_item=0;
 $total_item_price=0;
@@ -13,6 +14,7 @@ try{
     // $result=$stm->setFetchMode();
 
     $products=$stm->fetchAll(PDO::FETCH_ASSOC);
+    //var_dump($_SESSION['customer']);
     
     $num_item=count($products);
     foreach($products as $product){
@@ -35,10 +37,11 @@ try{
     <title>Dashboard|WSOMART</title>
     <link rel="stylesheet" href="../../assets/css/dashboard.css">
     <link rel="stylesheet" href="../../assets/css/header2.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
 
 </head>
 <body>
-    <?php require_once "../../includes/header2.php" ?>
+    <?php require_once "../../includes/header2.php" ;?>
 
     <main>
     <div class="card-container ">
@@ -116,6 +119,8 @@ try{
         <?php endforeach; ?>
     </section>
     </main>
-
+    <?php require_once "../../includes/footer.php" ;
+        render_footer("../home.php", '#', '#', "./settings.php")
+    ?>  
 </body>
 </html>

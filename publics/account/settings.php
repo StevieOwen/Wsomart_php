@@ -3,26 +3,23 @@ require_once __DIR__ . '/../../vendor/autoload.php'; // Load all libraries;
 require_once __DIR__ . '/../../includes/dbconnexion.php'; // Load DB;
 require_once "../../includes/checkinput.php";
 require_once "../../includes/token_generation.php";
+require_once "../../includes/session.php";
 
-$cust=["email"=>"","fname"=>"","lname"=>"","address"=>"","phone"=>"",];
+$cust=["fname"=>"","lname"=>"","address"=>"","phone"=>"",];
 $errors=["fname"=>"","lname"=>"","address"=>"","phone"=>"",];
 
-$cust['email']="hhirwa1390@stu.kemu.ac.ke";
-$dbvalue=["fname","lname","address","phone"];
+
+$dbvalue=["fname"=>"","lname"=>"","address"=>"","phone"=>""];
 try{
-    $stm=$conn->prepare("SELECT cust_first_name, cust_last_name, cust_address, cust_phone from customer where cust_email=:cust_email");
-    $stm->bindParam('cust_email',$cust['email']);
+    $stm=$conn->prepare("SELECT cust_first_name, cust_last_name, cust_address, cust_phone from customer where cust_id=:cust_id");
+    $stm->bindParam(':cust_id',$cust_id);
     $stm->execute();
     $result=$stm->fetch(PDO::FETCH_ASSOC);
-
-    if(!$cust){
-            $errors["email_not_found"]="Email not found! Please create first an account ";
-        }else{
             $dbvalue['fname']=$result['cust_first_name'];
             $dbvalue['lname']=$result['cust_last_name'];
             $dbvalue['address']=$result['cust_address'];
             $dbvalue['phone']=$result['cust_phone'];
-        }
+        
 }catch (Exception $e){
     
 }
@@ -60,13 +57,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])){
 
     if($num_err==0){
         try{
-        $stm=$conn->prepare("UPDATE customer set cust_first_name=:fname, cust_last_name=:lname, cust_phone=:phone, cust_address=:cust_address where cust_email=:cust_email " );
+        $stm=$conn->prepare("UPDATE customer set cust_first_name=:fname, cust_last_name=:lname, cust_phone=:phone, cust_address=:cust_address where cust_id=:cust_id " );
         $data=[
                 ':fname'=>$cust['fname'],
                 ':lname'=>$cust['lname'],
                 ':phone'=>$cust['phone'],
                 ':cust_address'=>$cust['address'],
-                ':cust_email'=>$cust['email'],
+                ':cust_id'=>$cust_id,
               ];
        if($stm->execute($data)){
         echo "success";
@@ -100,6 +97,7 @@ header("Location:../Auth/login.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings |WSOMART</title>
     <link rel="stylesheet" href="../../assets/css/header2.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
     <link rel="stylesheet" href="../../assets/css/settings.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -119,7 +117,7 @@ header("Location:../Auth/login.php");
                         <!-- first name -->
                         <!-- <div class="error"><?php echo $errors['fname'] ?></div> -->
                         <div class="input-group  input-wrapper mb-3">
-                            <input disabled ="text" class="form-control" value="<?php echo  $dbvalue['fname'] ?>" name="fname" aria-label="Recipient’s fname" aria-describedby="fname_edit">
+                            <input disabled type ="text" class="form-control" value="<?php echo  $dbvalue['fname'] ?>" name="fname" aria-label="Recipient’s fname" aria-describedby="fname_edit">
                             <button class="btn btn-outline-secondary edit_btn" type="button" id="fname_edit">Edit</button>
                         </div>   
                         
@@ -187,6 +185,9 @@ header("Location:../Auth/login.php");
         </form>
     </main>
 
+    <?php require_once "../../includes/footer.php" ;
+        render_footer("../home.php", '#', "./dashboard.php", "#")
+    ?>     
     <script src="../../assets/js/edit_infos.js"></script>
 </body>
 </html>

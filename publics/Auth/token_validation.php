@@ -4,8 +4,10 @@ require_once __DIR__ . '/../../includes/dbconnexion.php'; // Load DB;
 require_once "../../includes/checkinput.php";
 require_once "../../includes/token_generation.php";
 $email="";
+$cust_id="";
 if(isset($_SESSION['customer'])){
-    $email=$_SESSION['customer'];
+    $email=$_SESSION['customer']['cust_email'];
+    $cust_id=$_SESSION['customer']['cust_id'];
 }
 $token="";
 $errors=["empty"=>"", "nomatch"=>"","expired"=>""];

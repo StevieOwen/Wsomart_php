@@ -4,6 +4,17 @@ require_once __DIR__ . '/../../includes/dbconnexion.php'; // Load DB;
 
 require_once "../../includes/checkinput.php";
 require_once "../../includes/token_generation.php";
+
+function validatePassword($password) {
+    $pattern = '/^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/';
+
+    if (preg_match($pattern, $password)) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 $customer=[
         "cust_id"=>"",
         "cust_fname"=>"",
@@ -38,7 +49,8 @@ $errors=[
         "cust_confirm_pwd"=>"",
         "password_match"=>"",
         "accept_terms"=>"" ,
-        "email_failed"=>""      
+        "email_failed"=>"" ,
+        "low_password"=>""     
 ];
 
 if(isset($_POST['register'])){
@@ -80,9 +92,12 @@ if(isset($_POST['register'])){
     // check password
     if(empty($_POST['password'])){
         $errors["cust_password"]="Password is required";
+    }else if(validatePassword($_POST['password'])==0){
+        $errors["low_password"]="Password must be at least 8 characters, include 1 uppercase, 1 digit, and 1 special character.";
     }else{
-        $customer["cust_password"]=checkinput($_POST["password"]);
+         $customer["cust_password"]=checkinput($_POST["password"]);
     }
+
     // check password confirmation
     if(empty($_POST['confirm_password'])){
         $errors["cust_confirm_pwd"]="Password confirmation is required";
@@ -184,7 +199,7 @@ if(isset($_POST['register'])){
         
         if(send_mail($subject,$body,$customer["cust_email"])){
              // redirect to token validation
-            $_SESSION['customer']=$customer['cust_email'];
+            $_SESSION['customer']=['cust_email'=>$customer['cust_email'],'cust_id'=>$customer["cust_id"]];
             header("Location:token_validation.php");
             exit();
         }else{
@@ -260,6 +275,7 @@ if(isset($_POST['register'])){
                 
             </div>
             <!-- password -->
+            <div class="error"><?php echo $errors["low_password"] ?></div> 
             <div class="error"><?php echo $errors['cust_password'] ?></div>
             <div class="input-group input-wrapper">
                 <span class="input-group-text" id="password"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d='M16.75 8c0-1.478-.33-2.901-1.107-3.975-.8-1.107-2.03-1.775-3.643-1.775s-2.842.668-3.643 1.775C7.58 5.099 7.25 6.522 7.25 8v1.25h-.58c-.535 0-.98 0-1.345.03-.38.031-.736.098-1.073.27a2.75 2.75 0 0 0-1.202 1.202c-.172.337-.24.694-.27 1.074-.03.364-.03.81-.03 1.344v4.66c0 .535 0 .98.03 1.345.03.38.098.737.27 1.074a2.75 2.75 0 0 0 1.202 1.202c.337.172.693.239 1.073.27.365.03.81.03 1.345.03h10.66c.535 0 .98 0 1.345-.03.38-.031.736-.098 1.073-.27a2.75 2.75 0 0 0 1.202-1.202c.172-.337.24-.694.27-1.074.03-.364.03-.81.03-1.344V13.17c0-.534 0-.98-.03-1.344-.03-.38-.098-.737-.27-1.074a2.75 2.75 0 0 0-1.2-1.202c-.338-.172-.694-.239-1.074-.27-.365-.03-.81-.03-1.345-.03h-.58zm-8 0c0-1.283.29-2.36.822-3.096.51-.703 1.28-1.154 2.428-1.154s1.919.45 2.428 1.154c.532.736.822 1.813.822 3.096v1.25h-6.5zm4 7.25v.5a.75.75 0 0 1-1.5 0v-.5a.75.75 0 0 1 1.5 0M16 14.5a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-1.5 0v-.5a.75.75 0 0 1 .75-.75m-7.25.75v.5a.75.75 0 0 1-1.5 0v-.5a.75.75 0 0 1 1.5 0'/></svg></span>

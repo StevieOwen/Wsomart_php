@@ -1,5 +1,5 @@
 <?php
-
+require_once "../includes/session.php";
 
 ?>
 <!DOCTYPE html>
@@ -19,10 +19,13 @@
 </head>
 <body>
     
-    <?php require_once "../includes/header2.php" ;?>
+    <?php require_once "../includes/header2.php" ; ?>
 
 
 
-    <?php require_once "../includes/footer.php" ;?>
+     <?php require_once "../includes/footer.php" ;
+        render_footer("#", '#',"./account/dashboard.php", "./account/settings.php");
+        
+    ?>  
 </body>
 </html>

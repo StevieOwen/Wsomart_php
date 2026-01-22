@@ -14,7 +14,7 @@
 }
 body{
     margin:0;
-    padding:0;
+    padding-bottom: 70px;
     overflow-x: hidden;
 }
 
@@ -144,6 +144,14 @@ body{
 
     }
 
+    .card-buttons button{
+    font-size: 0.6rem;
+    border-radius: 50px;
+    padding: 0.3rem;
+    color: var(--white-color);
+}
+
+
 }
 
 @media screen and (max-width:412px){
@@ -187,6 +195,13 @@ body{
     width: 100%;
     margin: 0 auto;
     }
+
+    .card-buttons button{
+    font-size: 0.6rem;
+    border-radius: 50px;
+    padding: 0.3rem;
+    color: var(--white-color);
+}
 
 
 }
@@ -235,6 +250,12 @@ body{
      
 
     }
+    .card-buttons button{
+    font-size: 0.5rem;
+    border-radius: 50px;
+    padding: 0.3rem;
+    color: var(--white-color);
+}
 
 
 }
