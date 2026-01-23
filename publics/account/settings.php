@@ -186,7 +186,7 @@ header("Location:../Auth/login.php");
     </main>
 
     <?php require_once "../../includes/footer.php" ;
-        render_footer("../home.php", '#', "./dashboard.php", "#")
+        render_footer("../home.php", './category.php', "./dashboard.php", "#")
     ?>     
     <script src="../../assets/js/edit_infos.js"></script>
 </body>

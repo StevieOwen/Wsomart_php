@@ -2,14 +2,16 @@
 <?php
 require_once __DIR__ . '/../../vendor/autoload.php'; // Load all libraries;
 require_once __DIR__ . '/../../includes/dbconnexion.php'; // Load DB;
-require_once "../../includes/session.php";
+require_once  '../../includes/session.php';
 
 $item=['price'=>'','name'=>'','img_name'=>'','id'=>''];
 $num_item=0;
 $total_item_price=0;
 try{
-    $stm=$conn->prepare("SELECT item_price, item_name, img_name, item.item_id, item_seller from item  join image on item.item_id=image.item_id where item_seller=:item_seller ");
+    $stm=$conn->prepare("SELECT item_price, item_name, img_name, item.item_id, item_seller from item  join image on item.item_id=image.item_id where (item_seller=:item_seller and item_status=:item_status) ");
     $stm->bindParam(':item_seller',$cust_id);
+    $stm->bindParam(':item_status',$status);
+    $status="available";
     $stm->execute();
     // $result=$stm->setFetchMode();
 
@@ -25,6 +27,40 @@ try{
     echo $e;
 }
 
+if(isset($_POST['delete'])){
+    
+    $item_id=$_POST['item_id'];
+    
+    try{
+        $stm=$conn->prepare("DELETE from image where item_id=:item_id");
+        $stm->bindParam(':item_id',$item_id);
+        $stm->execute();
+
+        $stmt=$conn->prepare("DELETE from item where item_id=:item_id");
+        $stmt->bindParam(':item_id',$item_id);
+        $stmt->execute();
+
+    }catch(Exception $e){
+
+    }
+    
+} 
+
+if(isset($_POST['mark_sold'])){
+    $item_id=$_POST['item_id'];
+
+    try{
+        $stm=$conn->prepare("UPDATE item set item_status=:item_status where item_id=:item_id");
+    $stm->bindParam(':item_status',$status);
+    $stm->bindParam(':item_id',$item_id);
+
+    $status="sold";
+    $stm->execute();
+    }catch(Exception $e){
+
+    }
+    
+}
 
 ?>
 
@@ -104,8 +140,9 @@ try{
                     <p class="card-text" style="color:#013F62"><?php echo htmlspecialchars($product['item_name']) ?></p>
                     <p style="opacity:0.7; font-size:0.8rem">price:<?php echo htmlspecialchars($product['item_price'])."RWF" ?></p>
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+                        <input type="hidden" name="item_id" value="<?php echo $product['item_id']; ?>">   
                         <div class="card-buttons">
-                            <button type="submit" name="sold" id="sold" style="background-color:#0F5909;">Mark as sold</button>
+                            <button type="submit" name="mark_sold" id="sold" style="background-color:#0F5909;">Mark as sold</button>
                             <button type="submit" name="edit" id="edit" style="background-color:#013F62;">Edit details</button>
                             <button type="submit" name="delete" id="delete" style="background-color:#620102;">Delete</button>
                         
@@ -120,7 +157,7 @@ try{
     </section>
     </main>
     <?php require_once "../../includes/footer.php" ;
-        render_footer("../home.php", '#', '#', "./settings.php")
+        render_footer("../home.php", './category.php', '#', "./settings.php")
     ?>  
 </body>
 </html>

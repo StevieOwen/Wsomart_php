@@ -98,7 +98,7 @@ if(isset($_POST['additem'])){
             $stmt->bindParam(':item_id',$item['item_id']);
             $stmt->bindParam(':img_id',$img_id);
             $stmt->execute();
-            $_SESSION['customer']=$cust_id;
+            
             header("Location: ./successpage.php");
         }catch(Exception $e){
             echo $e;

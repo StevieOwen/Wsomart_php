@@ -2,11 +2,8 @@
 // success.php
 // You can optionally check for a session or a 'success' parameter here 
 // to prevent people from accessing this page directly.
-session_start();
-if(isset($_SESSION['customer'])){
-    $cust_id=$_SESSION['customer'];
-}
-$_SESSION['customer']=$cust_id;
+// session_start();
+// require_once "../../includes/session.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

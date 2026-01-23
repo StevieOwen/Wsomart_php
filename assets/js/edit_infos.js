@@ -29,18 +29,34 @@ Array.from(edit_btns).forEach(function(edit_btn){
 
 const fieldNames = ['fname', 'lname', 'address', 'phone'];
 
-// 1. On page load: Check if there's "saved" data in localStorage
+// // 1. On page load: Check if there's "saved" data in localStorage
+// window.addEventListener('load', () => {
+//     fieldNames.forEach(name => {
+//         const savedValue = localStorage.getItem(`draft_${name}`);
+//         const input = document.querySelector(`input[name="${name}"]`);
+        
+//         // If the user had typed something before, override the PHP value
+//         if (savedValue !== null) {
+//             input.value = savedValue;
+//         }
+//     });
+// });
+
 window.addEventListener('load', () => {
     fieldNames.forEach(name => {
-        const savedValue = localStorage.getItem(`draft_${name}`);
+        const savedValue = sessionStorage.getItem(`draft_${name}`);
         const input = document.querySelector(`input[name="${name}"]`);
         
-        // If the user had typed something before, override the PHP value
-        if (savedValue !== null) {
+        // Only override PHP value if there is active data from this specific session
+        if (savedValue !== null && input) {
             input.value = savedValue;
         }
     });
 });
+
+
+
+
 
 // 2. As the user types: Save the value to localStorage
 document.getElementById('edit_form').addEventListener('input', (e) => {
