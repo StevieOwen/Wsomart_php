@@ -1,0 +1,241 @@
+:root{
+    --primary-color: #013F62;
+    --white-color:#fff;
+    --input--background-color:#D9D9D9;
+    --link-color:#0172B2;
+    --error:#D93025;
+    --input-text:#212121;
+    --card-background-color:#538cb4;
+}
+* {
+  box-sizing: border-box;
+}
+body{
+    margin:0;
+    padding-bottom: 70px;
+    overflow-x: hidden;
+}
+
+/* .img_card{
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #e9ecef;
+    height: 100%;
+}
+
+.img_card img{
+    background: var(--primary-color);
+    border-radius: 12px;
+    padding: 15px;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #e9ecef;
+    height: 100%;
+}
+
+.product_infos{
+    width: 95%;
+    display:flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+.product_infos h6{
+    font-size: 1.5rem;
+}
+.product_infos h5{
+    font-size: 1rem;
+}
+
+.seller h6 span{
+    font-size: 0.8rem;
+} */
+
+
+
+
+ .product-container {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    min-height: 100vh;
+}
+
+.image-carousel {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 0 0 24px 24px;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 10;
+}
+
+.nav-btn {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #1a3a52;
+}
+
+.nav-btn:hover {
+    background: white;
+    transform: scale(1.05);
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.indicator-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.indicator-dot.active {
+    background: white;
+    width: 24px;
+    border-radius: 4px;
+}
+
+.product-info {
+    padding: 24px;
+}
+
+.product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.product-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #212529;
+    margin: 0;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #28a745;
+    margin: 0;
+}
+
+.product-author {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+}
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #212529;
+    margin-bottom: 12px;
+}
+
+.description-text {
+    color: #495057;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.btn-availability {
+    flex: 1;
+    background: #1a5f7a;
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 50px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.btn-availability:hover {
+    background: #144a5e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 95, 122, 0.3);
+}
+
+.btn-like {
+    background: #1a5f7a;
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 50px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s;
+    cursor: pointer;
+    min-width: 140px;
+}
+
+.btn-like:hover {
+    background: #144a5e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 95, 122, 0.3);
+}
+
+.carousel-slide {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.carousel-slide.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

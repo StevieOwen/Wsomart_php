@@ -328,6 +328,7 @@ if(isset($_POST['register'])){
              <div style="text-align:center">
                 <input type="submit" value="CREATE ACCOUNT" class="register" id="register" name="register">
                 <p>Already have an account? <a href="./login.php">Login here</a></p>
+                <p><a href="">Continue without registering</a> </p>
                 <br><div class="error"><?php echo $errors["email_failed"] ?> </div>
              </div>
             

@@ -1,0 +1,123 @@
+:root{
+    --primary-color: #013F62;
+    --white-color:#fff;
+    --input--background-color:#D9D9D9;
+    --link-color:#0172B2;
+    --error:#D93025;
+    --input-text:#212121;
+    --card-background-color:#538cb4;
+}
+* {
+  box-sizing: border-box;
+}
+body{
+    margin:0;
+    padding-bottom: 70px;
+    overflow-x: hidden;
+}
+
+
+@media screen and(max-width:1000px){
+    
+}
+
+@media screen and (max-width:612px){
+/* Searchbar */
+.search-container {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #2c5270; /* Dark teal border from image */
+  border-radius: 50px;         /* Creates the pill shape */
+  padding: 10px 25px;
+  width: 80%;                /* Adjust width as needed */
+  background-color: white;
+  margin: 0 auto;
+}
+
+.search-icon {
+  color: #2c5270;              /* Icon color */
+  margin-right: 15px;
+}
+
+.search-input {
+  border: none;
+  outline: none;               /* Removes the default focus blue border */
+  font-family: serif;          /* The image uses a serif font */
+  font-size: 16px;
+  color: #2c5270;
+  width: 100%;
+}
+
+.search-input::placeholder {
+  color: #2c5270;              /* Matches placeholder color to border */
+  opacity: 0.8;
+}
+button[name='search']{
+    border: none;
+    background-color: inherit;
+}
+.categories-grid{
+    width: 90%;
+    max-width: 600px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.categorie-card{
+  background: white;
+  border: 2px solid #c8d9e6;
+  border-radius: 16px;
+  padding: 40px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+}
+.categorie-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  border-color: #6ba3d0;
+}
+
+.categorie-card button{
+  border: none;
+  background-color: inherit;
+ color: #6ba3d0;
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-align: center;
+  margin: 0;
+  line-height: 1.4;
+
+}
+
+
+}
+
+@media (max-width: 768px) {
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .category-card {
+        min-height: 140px;
+        padding: 30px 15px;
+    }
+
+    .category-name {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+}

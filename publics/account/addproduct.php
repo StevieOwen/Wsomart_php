@@ -7,6 +7,7 @@ require_once "../../includes/session.php";
 $item=['item_id'=>'','item_created_at'=>'','item_status'=>'available', 'item_deadline'=>'' ,'name'=>'','brand'=>'','material'=>'', 'price'=>'', 'quantity'=>1 , 'category'=>'','description'=>'','image'=>'','image_temp'=>''];
 $errors=['name'=>'','price'=>'','category'=>'','image'=>''];
 $folder='';
+$publication=['pub_id'=>'','pub_created_at'=>''];
 if(isset($_POST['additem'])){
     // check if the user provided the name of item
     if(empty($_POST['item_name'])){
@@ -99,6 +100,16 @@ if(isset($_POST['additem'])){
             $stmt->bindParam(':img_id',$img_id);
             $stmt->execute();
             
+            $publication['pub_created_at']=date("Y-m-d H:i:s");
+            $publication['pub_id']="pub_".random_int(100000,999999);
+
+            $stmt1=$conn->prepare("INSERT INTO publication(publication_id,item_id ,seller_id,publication_created_at, img_id) values(:publication_id, :item_id,:seller_id,:publication_created_at, :img_id) ");
+            $stmt1->bindParam(':publication_id',$publication['pub_id']);
+            $stmt1->bindParam(':item_id',$item['item_id']);
+            $stmt1->bindParam(':seller_id',$cust_id);
+            $stmt1->bindParam(':publication_created_at',$publication['pub_created_at']);
+            $stmt1->bindParam(':img_id',$img_id);
+            $stmt1->execute();
             header("Location: ./successpage.php");
         }catch(Exception $e){
             echo $e;

@@ -213,6 +213,7 @@ if(isset($_POST['resetpwd'])){
                     <input type="submit" name="login" id="login" Value="LOGIN">
                 </div>    
                 <p>Don't have an Account yet? <a href="./registration.php">Register here</a> </p>
+                <p><a href="../../index.php">Continue without login</a> </p>
 
             </div>
         </form>

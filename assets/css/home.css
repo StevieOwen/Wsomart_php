@@ -16,7 +16,7 @@ body{
     overflow-x: hidden;
 }
 
-@media screen and (min-width:1400px){
+@media screen and (min-width:100px){
 /* Searchbar */
 .search-container {
   display: flex;
@@ -47,9 +47,163 @@ body{
   opacity: 0.8;
 }
 
+button[name='search']{
+    border: none;
+    background-color: inherit;
+}
+
+.mycarousel{
+    margin-bottom: 10px;
+}
+
+/* The main container of the carousel */
+.custom-carousel {
+    background-color: #538cb4; /* The blue color from your image */
+    border-radius: 40px;       /* Rounded corners */
+    overflow: hidden;
+    padding: 40px 0;
+}
+
+.carousel-content {
+    min-height: 350px;
+}
+
+/* Styling the image to pop like the shoe in your photo */
+.hero-img {
+    max-height: 300px;
+    filter: drop-shadow(0px 20px 30px rgba(0,0,0,0.2));
+    transform: rotate(-15px); /* Optional: adds that "dynamic" look */
+}
+
+/* Customizing the Indicators (Dots) */
+.carousel-indicators button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%; /* Makes them circles instead of lines */
+    background-color: #ffffff;
+    opacity: 0.5;
+    margin: 0 5px;
+}
+
+.carousel-indicators .active {
+    background-color: #0d1b2a; /* Dark blue/black for active dot */
+    opacity: 1;
+}
+
+/* Removing the default side arrows  */
+.carousel-control-prev, .carousel-control-next {
+    display: none;
+}
+
+
+
+/* Categories navigation */
+.category-pills {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            padding: 10px 0;
+}
+
+.category-pill {
+    padding: 10px 24px;
+    border-radius: 25px;
+    border: none;
+    background-color: #e9ecef;
+    color: #495057;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.category-pill.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.category-pill:hover {
+    background-color: #dee2e6;
+}
+
+.category-pill.active:hover {
+    background-color: var(--primary-color);
+}
+/* Image grid for products */
+.product-card {
+        background: white;
+        border-radius: 12px;
+        padding: 15px;
+        position: relative;
+        transition: transform 0.2s, box-shadow 0.2s;
+        border: 1px solid #e9ecef;
+        height: 100%;
+    }
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.product-image {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.product-name {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #212529;
+}
+
+.product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-price {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #212529;
+}
+
+.favorite-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6c757d;
+    font-size: 1.2rem;
+    transition: color 0.2s;
+    padding: 0;
+}
+
+.favorite-btn:hover {
+    color: #ff4757;
+}
+
+.favorite-btn.active {
+    color: #ff4757;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
 
 
 }
+
 
 
 @media screen and (max-width:612px){
@@ -134,78 +288,119 @@ button[name='search']{
 
 
 /* Categories navigation */
-.cat-nav{
-margin: 30px auto;
-background-color: var(--primary-color);
-text-align: center;
-
+.category-pills {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            padding: 10px 0;
 }
 
-#dropdown-btn{
-    background-color: inherit;
-    color: var(--white-color);
-    display: flex;
-    justify-content: space-between;
+.category-pill {
+    padding: 10px 24px;
+    border-radius: 25px;
     border: none;
-    align-items: center;
-    margin-bottom: 20px;
+    background-color: #e9ecef;
+    color: #495057;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
 }
-#dropdown-btn span{ 
-    display: block;
-}
-#dropdown-btn img{
-    width: 20px;
-    margin-left: 5px;
-    margin-top: 2px;
-}
-.hidden{
-    display: none;
-}
-.cat-nav ul{
-    list-style-type: none;
-    text-align: left;
-}
-.cat-nav ul li button{
-    border: none;
+
+.category-pill.active {
     background-color: var(--primary-color);
-    font-size: 0.9rem;
-    color: var(--white-color);
+    color: white;
 }
-ul li:hover, .but-menu:hover{
-    color: greenyellow;
+
+.category-pill:hover {
+    background-color: #dee2e6;
 }
+
+.category-pill.active:hover {
+    background-color: var(--primary-color);
+}
+
 /* Image grid for products */
+.product-card {
+        background: white;
+        border-radius: 12px;
+        padding: 15px;
+        position: relative;
+        transition: transform 0.2s, box-shadow 0.2s;
+        border: 1px solid #e9ecef;
+        height: 100%;
+    }
 
-.products-grid{
-    width:93%;
-    margin: 0 auto;
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.product-image {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.product-name {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #212529;
+}
+
+.product-footer {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    align-items: space-between;
-    padding: 5px;
+    align-items: center;
+}
+.product-footer button{
+    border: none;
+    background-color: inherit;
+    font-size: 0.7rem;
 }
 
-.product-card{
-    width:10rem ;
-    height:10rem ; 
-    background-color: var(--card-background-color);
-    margin-bottom: 20px;
-    /* border-radius: 12px; */
+.product-price {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #212529;
 }
-.product-card img{
-    width:9.9rem ;
-    height:10rem ; 
-    border-top-left-radius: 12px;
-    border-top-right-radius:12px ;     
+
+.favorite-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6c757d;
+    font-size: 1.2rem;
+    transition: color 0.2s;
+    padding: 0;
 }
-.product-card .card-body{
-    background-color: var(--card-background-color);
-    border-bottom-right-radius:12px;
-    border-bottom-left-radius: 12px;
-    color: var(--white-color);
+
+.favorite-btn:hover {
+    color: #ff4757;
 }
-.product-card p{
-    font-size: 0.8rem;
+
+.favorite-btn.active {
+    color: #ff4757;
 }
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+}
+
+@media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
 }

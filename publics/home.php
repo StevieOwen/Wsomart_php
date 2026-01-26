@@ -5,9 +5,12 @@ require_once "../includes/session.php";
 
 $noproduct="";
 $item=['name'=>'','price'=>'','image'=>''];
+$activeCat = null;
+$id="";
 if(isset($_POST['cat1'])){
+        $activeCat = 'cat1';
         try{
-        $stm=$conn->prepare("SELECT item_name, item_price, img_name from item join image on item.item_id=image.item_id WHERE item_category=:item_category");
+        $stm=$conn->prepare("SELECT item_name, item.item_id, item_price, img_name from item join image on item.item_id=image.item_id WHERE item_category=:item_category");
         $stm->bindParam(':item_category', $category);
         $category="house furnitures";
         $stm->execute();
@@ -19,8 +22,9 @@ if(isset($_POST['cat1'])){
 
     }
 }elseif(isset($_POST['cat2'])){
+    $activeCat = 'cat2';
     try{
-    $stm=$conn->prepare("SELECT item_name, item_price, img_name from item join image on item.item_id=image.item_id WHERE item_category=:item_category");
+    $stm=$conn->prepare("SELECT item_name, item_price, item.item_id, img_name from item join image on item.item_id=image.item_id WHERE item_category=:item_category");
     $stm->bindParam(':item_category', $category);
     $category="shoes and clothes";
     $stm->execute();
@@ -33,8 +37,9 @@ if(isset($_POST['cat1'])){
 
 }
 }elseif(isset($_POST['cat3'])){
+    $activeCat = 'cat3';
     try{
-    $stm=$conn->prepare("SELECT item_name, item_price, img_name from item join image on item.item_id=image.item_id WHERE item_category=:item_category");
+    $stm=$conn->prepare("SELECT item_name, item_price, item.item_id, img_name from item join image on item.item_id=image.item_id WHERE item_category=:item_category");
     $stm->bindParam(':item_category', $category);
     $category="electronics";
     $stm->execute();
@@ -46,8 +51,9 @@ if(isset($_POST['cat1'])){
 
     }
 }elseif(isset($_POST['cat4'])){
+    $activeCat = 'cat4';
     try{
-    $stm=$conn->prepare("SELECT item_name, item_price, img_name from item join image on item.item_id=image.item_id WHERE item_category=:item_category");
+    $stm=$conn->prepare("SELECT item_name, item_price, item.item_id, img_name from item join image on item.item_id=image.item_id WHERE item_category=:item_category");
     $stm->bindParam(':item_category', $category);
     $category="makeup and beauty";
     $stm->execute();
@@ -59,8 +65,9 @@ if(isset($_POST['cat1'])){
 
     }
 }elseif(isset($_POST['cat5'])){
+    $activeCat = 'cat5';
     try{
-    $stm=$conn->prepare("SELECT item_name, item_price, img_name from item join image on item.item_id=image.item_id WHERE item_category=:item_category");
+    $stm=$conn->prepare("SELECT item_name, item_price, item.item_id, img_name from item join image on item.item_id=image.item_id WHERE item_category=:item_category");
     $stm->bindParam(':item_category', $category);
     $category="others";
     $stm->execute();
@@ -71,22 +78,10 @@ if(isset($_POST['cat1'])){
     }catch(Exception $e){
 
     }
-}elseif(isset($_POST['cat'])){
-
-    try{
-        $stm=$conn->prepare("SELECT item_name, item_price, img_name from item join image on item.item_id=image.item_id");
-        $stm->execute();
-        $products=$stm->fetchAll(PDO::FETCH_ASSOC);
-        if(empty($products)){
-        $noproduct="Nothing found!";
-        }
-    }catch(Exception $e){
-
-    }
 }elseif(isset($_POST['search'])){
    $searchTerm = "%" . $_POST['search_value'] . "%";
 try{
-    $stm=$conn->prepare("SELECT item_name, item_price, img_name from item join image on item.item_id=image.item_id WHERE item_category LIKE :item_category OR item_name LIKE :item_name");
+    $stm=$conn->prepare("SELECT item_name, item_price,item.item_id, img_name from item join image on item.item_id=image.item_id WHERE item_category LIKE :item_category OR item_name LIKE :item_name");
     $stm->bindParam(':item_name', $searchTerm);
     $stm->bindParam(':item_category', $searchTerm);
     $stm->execute();
@@ -97,6 +92,25 @@ try{
     }catch(Exception $e){
 
     }
+}else{
+    $activeCat = 'cat';
+    try{
+        $stm=$conn->prepare("SELECT item_name,item.item_id, item_price, img_name from item join image on item.item_id=image.item_id");
+        $stm->execute();
+        $products=$stm->fetchAll(PDO::FETCH_ASSOC);
+        if(empty($products)){
+        $noproduct="Nothing found!";
+        }
+        
+    }catch(Exception $e){
+
+    }
+}
+
+if(isset($_POST['view'])){
+    $_SESSION['item']= $_POST['item_id'];
+    Header("Location:./account/productview.php");
+
 }
 
 
@@ -185,36 +199,44 @@ try{
     </div>
 
     <!-- categorie navbar -->
-    <div class="cat-nav">
-
-        
-    <button type="button" id="dropdown-btn" > <span> Display All Categories </span> <span> <img id="but-icon" src="../assets/icon/down.png" alt=""></span></button>
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
-            <ul id="cat-menu" class="hidden">
-                <li><button type="submit" name="cat" class="but-menu">All</button></li>
-                <li><button type="submit" name="cat1" class="but-menu">House Furniture</button></li>
-                <li><button type="submit" name="cat2" class="but-menu">Shoes and Clothes</button></li>
-                <li><button type="submit" name="cat3" class="but-menu">Electronics</button></li>
-                <li><button type="submit" name="cat4" class="but-menu">Makeup and Beauty</button></li>
-                <li><button type="submit" name="cat5" class="but-menu">Others</button></li>
-            </ul>
+     
+    <div class="container py-4">
+        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
+        <!-- Category Pills -->
+            <div class="category-pills">
+                <button type="submit" name="cat" id="cat" class="category-pill <?php echo ($activeCat === 'cat') ? 'active' : '' ?>" data-category="all">All</button>
+                <button type="submit" name="cat1" id="cat1" class="category-pill <?php echo ($activeCat === 'cat1') ? 'active' : '' ?>" data-category="house furnitures">House Furnitures</button>
+                <button type="submit" name="cat2" id="cat2" class="category-pill <?php echo ($activeCat === 'cat2') ? 'active' : '' ?>" data-category="clothes">Clothes & Shoes</button>
+                <button type="submit" name="cat3" id="cat3" class="category-pill <?php echo ($activeCat === 'cat3') ? 'active' : '' ?>" data-category="Electronics">Electronics</button>
+                <button type="submit" name="cat4" id="cat4" class="category-pill <?php echo ($activeCat === 'cat4') ? 'active' : '' ?>" data-category="beauty">Makeup & Beauty</button>
+                <button type="submit" name="cat5" id="cat5" class="category-pill <?php echo ($activeCat === 'cat5') ? 'active' : '' ?>" data-category="others">Others</button>
+            </div>
         </form>
-    </div>
 
      <!-- products grid -->
-
-    <div class="products-grid">
-
-        <div><p><?php echo $noproduct; ?></p></div>
-        <?php  foreach($products as $product): ?>
-        <div class="card product-card" style="border-radius:12px;" >
-            <img src="../assets/images/<?php echo htmlspecialchars($product['img_name'])?>" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text"><?php echo htmlspecialchars($product['item_name'])?></p>
-                <p class="card-text" style="font-size:0.7rem;"><?php echo htmlspecialchars($product['item_price'])." Rwf"?></p>
-            </div>
-        </div>  
+        
+        <div class="products-grid" id="popularProducts">
+            <div><p><?php echo $noproduct; ?></p></div>
+            <?php  foreach($products as $product): ?>
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
+                <div class="product-card">
+                        <img src="../assets/images/<?php echo htmlspecialchars($product['img_name'])?>" alt="<?php echo htmlspecialchars($product['item_name'])?>" class="product-image">
+                        <div class="product-name"><?php echo htmlspecialchars($product['item_name'])?></div>
+                        <div class="product-footer">
+                            <span class="product-price"><?php echo htmlspecialchars($product['item_price'])." Rwf"?></span>
+                            <span><button type="submit" name="view"> View more></button></span>
+                            <input type="hidden" name="item_id" value="<?php echo htmlspecialchars($product['item_id'])?>">
+                            <!-- <button class="favorite-btn" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button> -->
+                        </div>
+                </div>
+                </form>
             <?php endforeach?>
+        
+
+        </div>
+        
         
     </div>
 
